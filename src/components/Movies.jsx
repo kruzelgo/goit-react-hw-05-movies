@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// Movies.jsx
+
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { searchMovies } from '../Api';
+import SearchForm from '../SearchForm';
+import MoviesList from '../MoviesList';
 
-const Movies = () => {
-  const [query, setQuery] = useState('');
+const Movies = ({ searchQuery, onSearch }) => {
+  const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
+  const query =
+    new URLSearchParams(location.search).get('query') || searchQuery;
 
-  const handleSearch = async () => {
-    try {
-      const results = await searchMovies(query);
-      setSearchResults(results);
-    } catch (error) {
-      console.error('Error searching movies:', error);
-    }
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        if (query) {
+          const results = await searchMovies(query);
+          setSearchResults(results);
+        }
+      } catch (error) {
+        console.error('Error searching movies:', error);
+      }
+    };
+
+    fetchMovies();
+  }, [query]);
+
+  const handleSearch = async value => {
+    onSearch(value);
   };
 
   return (
     <div>
       <h2>Search Movies</h2>
-      <input
-        type="text"
-        value={query}
-        onChange={e => setQuery(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-      <ul>
-        {searchResults.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <SearchForm onSubmit={handleSearch} />
+      <MoviesList movies={searchResults} />
     </div>
   );
 };
