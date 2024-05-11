@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieReviews } from '../Api';
+import PropTypes from 'prop-types';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -43,6 +44,13 @@ const MovieDetails = () => {
       </ul>
     </div>
   );
+};
+
+MovieDetails.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default MovieDetails;

@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { searchMovies } from '../Api';
 import SearchForm from '../SearchForm';
 import MoviesList from '../MoviesList';
+import PropTypes from 'prop-types';
 
 const Movies = ({ searchQuery, onSearch }) => {
   const location = useLocation();
@@ -38,6 +39,11 @@ const Movies = ({ searchQuery, onSearch }) => {
       <MoviesList movies={searchResults} />
     </div>
   );
+};
+
+Movies.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default Movies;

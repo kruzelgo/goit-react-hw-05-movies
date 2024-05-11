@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from '../Api';
+import PropTypes from 'prop-types';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -29,6 +30,15 @@ const Cast = () => {
       </ul>
     </div>
   );
+};
+
+Cast.propTypes = {
+  cast: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Cast;
