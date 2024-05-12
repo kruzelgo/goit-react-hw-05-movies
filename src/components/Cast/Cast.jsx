@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from '../../Api';
 import PropTypes from 'prop-types';
+import css from './Cast.css';
 
-const Cast = () => {
+const Cast = ({ credits }) => {
   const { movieId } = useParams();
-  const [credits, setCredits] = useState([]);
+  const [cast, setCast] = useState([]);
 
   useEffect(() => {
     const fetchCredits = async () => {
       try {
         const movieCredits = await getMovieCredits(movieId);
-        setCredits(movieCredits);
+        setCast(movieCredits);
       } catch (error) {
         console.error('Error fetching movie credits:', error);
       }
@@ -21,22 +22,46 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <h2>Cast</h2>
-      <ul>
-        {credits.map(actor => (
-          <li key={actor.id}>{actor.name}</li>
-        ))}
-      </ul>
+    <div className={css.castWrapper}>
+      <h3 className={css.castHeader}>Cast</h3>
+      {cast.length ? (
+        <ul className={css.castList}>
+          {cast.map(actor => (
+            <li className={css.castListItem} key={actor.id}>
+              {actor.profile_path ? (
+                <img
+                  className={css.castImage}
+                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                  alt={`${actor.name} profile`}
+                />
+              ) : (
+                <img
+                  className={css.castImage}
+                  src={`https://via.placeholder.com/200x300?text=No+Image`}
+                  alt={`${actor.name} profile`}
+                />
+              )}
+              <div className={css.castInfo}>
+                <h3 className={css.castName}>{actor.name}</h3>
+                <p>Character: {actor.character}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className={css.noCastText}>No cast information available.</p>
+      )}
     </div>
   );
 };
 
 Cast.propTypes = {
-  cast: PropTypes.arrayOf(
+  credits: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
+      profile_path: PropTypes.string,
+      character: PropTypes.string,
     })
   ).isRequired,
 };

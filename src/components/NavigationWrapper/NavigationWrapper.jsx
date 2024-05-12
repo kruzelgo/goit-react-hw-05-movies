@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { Suspense } from 'react';
 import LoadingIndicator from '../LoadingIndicator';
 import PropTypes from 'prop-types';
@@ -9,14 +9,15 @@ import css from './NavigationWrapper.css';
 const NavigationWrapper = () => {
   return (
     <div className={css.navigationWrapper}>
-      <header>
+      <header className={css.header}>
+        {' '}
         <nav>
-          <a href="/" className={css.navLink}>
+          <NavLink to="/" className={css.navLink}>
             Home
-          </a>
-          <a href="/movies" className={css.navLink}>
+          </NavLink>
+          <NavLink to="/movies" className={css.navLink}>
             Movies
-          </a>
+          </NavLink>
         </nav>
       </header>
 

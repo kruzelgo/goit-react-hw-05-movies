@@ -1,19 +1,9 @@
 import React from 'react';
-import { MutatingDots } from 'react-spinners';
+import { CircleLoader } from 'react-spinners/CircleLoader';
 
 const LoadingIndicator = () => {
   return (
-    <MutatingDots
-      visible={true}
-      height={100}
-      width={100}
-      color="#778899"
-      secondaryColor="#4fa94d"
-      radius={12.5}
-      ariaLabel="mutating-dots-loading"
-      wrapperStyle={{}}
-      wrapperClass=""
-    />
+    <CircleLoader color="#36d7b7" loading size={100} speedMultiplier={1} />
   );
 };
 

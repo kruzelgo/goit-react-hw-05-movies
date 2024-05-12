@@ -1,40 +1,57 @@
-.movieDetails {
+.movieDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movieDetailsButton {
   margin-bottom: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.movieDetails {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 600px;
+  width: 100%;
 }
 
 .movieTitle {
   font-size: 24px;
-  font-weight: bold;
   margin-bottom: 10px;
-}
-
-.movieInfo {
-  margin-bottom: 20px;
-}
-
-.movieInfoItem {
-  margin-bottom: 5px;
 }
 
 .movieOverview {
   margin-bottom: 20px;
 }
 
-.movieCast {
-  margin-bottom: 20px;
+.movieInfoItem {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-.castList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: 10px;
+.castList,
+.reviewList {
+  list-style: none;
+  padding: 0;
 }
 
-.castItem {
-  text-align: center;
+.castItem,
+.reviewItem {
+  margin-bottom: 10px;
 }
 
 .castName {
   font-weight: bold;
-  margin-top: 5px;
+}
+
+.reviewContent {
+  font-style: italic;
 }

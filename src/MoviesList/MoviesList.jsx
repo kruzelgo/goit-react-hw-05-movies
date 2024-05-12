@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import css from './MovieList.css';
+import { Link } from 'react-router-dom';
 
 const MoviesList = ({ movies }) => {
   return (
     <ul className={css.moviesList}>
-      {' '}
       {movies.map(movie => (
         <li key={movie.id} className={css.movieItem}>
-          {' '}
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={movie.title}
-            className={css.moviePoster}
-          />{' '}
+          <Link to={`/movie/${movie.id}`}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.title}
+              className={css.moviePoster}
+            />
+          </Link>
           <div>
-            <p className={css.movieTitle}>{movie.title}</p>{' '}
+            <p className={css.movieTitle}>{movie.title}</p>
           </div>
         </li>
       ))}
