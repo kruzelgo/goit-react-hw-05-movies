@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getMovieReviews } from '../Api';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getMovieReviews } from '../../Api';
 
 const Reviews = () => {
   const { movieId } = useParams();

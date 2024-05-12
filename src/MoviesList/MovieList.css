@@ -1,0 +1,21 @@
+.moviesList {
+  list-style: none;
+  padding: 0;
+}
+
+.movieItem {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.movieTitle {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.moviePoster {
+  width: 150px;
+  height: auto;
+  margin-right: 10px;
+}

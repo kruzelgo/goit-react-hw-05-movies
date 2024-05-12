@@ -1,11 +1,11 @@
 // Movies.jsx
 
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { searchMovies } from '../Api';
-import SearchForm from '../SearchForm';
-import MoviesList from '../MoviesList';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { searchMovies } from '../../Api';
+import MoviesList from '../../MoviesList/MoviesList';
+import SearchForm from '../../SearchForm/SearchForm';
 
 const Movies = ({ searchQuery, onSearch }) => {
   const location = useLocation();

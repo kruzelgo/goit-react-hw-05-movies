@@ -1,11 +1,12 @@
 import React, { lazy } from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import NavigationWrapper from './NavigationWrapper/NavigationWrapper';
 
-const Home = lazy(() => import('./Home'));
-const Movies = lazy(() => import('./Movies'));
-const MovieDetails = lazy(() => import('./MovieDetails'));
-const Cast = lazy(() => import('./Cast'));
-const Reviews = lazy(() => import('./Reviews'));
+const Home = lazy(() => import('./Home/Home'));
+const Movies = lazy(() => import('./Movies/Movies'));
+const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   return (
@@ -19,13 +20,17 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      <Router>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/movies" component={Movies} />
-        <Route path="/movies/:movieId" component={MovieDetails} />
-        <Route path="/movies/:movieId/cast" component={Cast} />
-        <Route path="/movies/:movieId/reviews" component={Reviews} />
-      </Router>
+      <Routes>
+        <Route path="/" element={<NavigationWrapper />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
+      </Routes>
     </div>
   );
 };
