@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from '../../Api';
 import PropTypes from 'prop-types';
-import css from './Cast.css';
+import css from './Cast.module.css';
 
 const Cast = ({ credits }) => {
   const { movieId } = useParams();
@@ -37,7 +37,7 @@ const Cast = ({ credits }) => {
               ) : (
                 <img
                   className={css.castImage}
-                  src={`https://via.placeholder.com/200x300?text=No+Image`}
+                  src={`https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png`}
                   alt={`${actor.name} profile`}
                 />
               )}

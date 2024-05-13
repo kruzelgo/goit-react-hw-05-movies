@@ -1,10 +1,9 @@
 import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
-import { Suspense } from 'react';
-import LoadingIndicator from '../LoadingIndicator';
+// import { Suspense } from 'react';
+// import LoadingIndicator from '../LoadingIndicator';
 import PropTypes from 'prop-types';
-
-import css from './NavigationWrapper.css';
+import css from './NavigationWrapper.module.css';
 
 const NavigationWrapper = () => {
   return (
@@ -21,9 +20,9 @@ const NavigationWrapper = () => {
         </nav>
       </header>
 
-      <Suspense fallback={<LoadingIndicator />}>
-        <Outlet />
-      </Suspense>
+      {/* <Suspense fallback={<LoadingIndicator />}> */}
+      <Outlet />
+      {/* </Suspense> */}
     </div>
   );
 };

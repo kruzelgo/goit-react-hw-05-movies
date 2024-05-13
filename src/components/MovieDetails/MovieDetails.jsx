@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieReviews } from '../../Api';
 import PropTypes from 'prop-types';
-import css from './MovieDetails.css';
+import css from './MovieDetails.module.css';
 
 const defaultImg =
   'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-476x700.jpg';

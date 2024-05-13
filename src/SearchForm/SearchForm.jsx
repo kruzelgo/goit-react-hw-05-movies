@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import css from './SearchForm.css';
+import css from './SearchForm.module.css';
 import {
   NotificationContainer,
   NotificationManager,

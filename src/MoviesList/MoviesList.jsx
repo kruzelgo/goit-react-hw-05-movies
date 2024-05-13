@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from './MovieList.css';
+import css from './MovieList.module.css';
 import { Link } from 'react-router-dom';
 
 const MoviesList = ({ movies }) => {
