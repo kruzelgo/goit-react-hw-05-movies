@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieReviews } from '../../Api';
-import PropTypes from 'prop-types';
 import css from './MovieDetails.module.css';
 
 const defaultImg =
   'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-476x700.jpg';
 
 const MovieDetails = () => {
-  const { id } = useParams();
+  const { movieId } = useParams();
   const [movieData, setMovieData] = useState({});
   const [credits, setCredits] = useState([]);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    // Pobieranie szczegółów filmu
-    getMovieDetails(id)
-      .then(data => setMovieData(data))
-      .catch(error => console.error('Error fetching movie details:', error));
+    const fetchData = async () => {
+      try {
+        const movieDetails = await getMovieDetails(movieId);
+        setMovieData(movieDetails);
 
-    // Pobieranie obsady filmu
-    getMovieCredits(id)
-      .then(data => setCredits(data))
-      .catch(error => console.error('Error fetching movie credits:', error));
+        const movieCredits = await getMovieCredits(movieId);
+        setCredits(movieCredits);
 
-    // Pobieranie recenzji filmu
-    getMovieReviews(id)
-      .then(data => setReviews(data))
-      .catch(error => console.error('Error fetching movie reviews:', error));
-  }, [id]);
+        const movieReviews = await getMovieReviews(movieId);
+        setReviews(movieReviews);
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
+      }
+    };
+
+    fetchData();
+  }, [movieId]);
 
   return (
     <main>
@@ -72,10 +73,6 @@ const MovieDetails = () => {
       </div>
     </main>
   );
-};
-
-MovieDetails.propTypes = {
-  location: PropTypes.object.isRequired,
 };
 
 export default MovieDetails;

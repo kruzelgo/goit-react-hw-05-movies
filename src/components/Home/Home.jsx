@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { getTrendingMovies } from '../../Api';
 import MoviesList from '../../MoviesList/MoviesList';
@@ -27,13 +27,13 @@ const Home = () => {
   );
 };
 
-Home.propTypes = {
-  trendingMovies: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
+// Home.propTypes = {
+//   trendingMovies: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       title: PropTypes.string.isRequired,
+//     })
+//   ).isRequired,
+// };
 
 export default Home;

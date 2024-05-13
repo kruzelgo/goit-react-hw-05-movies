@@ -44,7 +44,7 @@ const SearchForm = ({ onSubmit }) => {
 };
 
 SearchForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
 };
 
 export default SearchForm;
