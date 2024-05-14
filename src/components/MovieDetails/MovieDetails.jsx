@@ -1,6 +1,6 @@
 import React, { useState, useEffect, startTransition } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getMovieDetails, getMovieCast, getMovieReviews } from '../../Api';
+import { getMovieDetails, getMovieCast, getMovieReviews } from '../../Api/Api';
 import css from './MovieDetails.module.css';
 
 const defaultImg =

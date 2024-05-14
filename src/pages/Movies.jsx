@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { searchMovies } from '../Api';
+import { searchMovies } from '../Api/Api';
 import SearchForm from '../components/SearchForm/SearchForm';
 import MoviesList from '../components/MoviesList/MoviesList';
 

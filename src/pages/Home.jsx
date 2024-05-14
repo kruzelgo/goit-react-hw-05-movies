@@ -1,13 +1,12 @@
-// import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { getTrendingMovies } from '../Api';
+import { getTrendingMovies } from '../Api/Api';
 import MoviesList from '../components/MoviesList/MoviesList';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
-    const fetchTrending = async () => {
+    const fetchTrendMovies = async () => {
       try {
         const movies = await getTrendingMovies();
         setTrendingMovies(movies);
@@ -16,24 +15,15 @@ const Home = () => {
       }
     };
 
-    fetchTrending();
+    fetchTrendMovies();
   }, []);
 
   return (
     <div>
       <h2>Trending Movies</h2>
-      <MoviesList movies={trendingMovies} />
+      <MoviesList trendingMovies={trendingMovies} />
     </div>
   );
 };
-
-// Home.propTypes = {
-//   trendingMovies: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       title: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-// };
 
 export default Home;
