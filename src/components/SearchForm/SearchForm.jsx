@@ -35,9 +35,11 @@ const SearchForm = ({ onSubmit }) => {
           onChange={e => setQuery(e.target.value)}
           className={css.searchInput}
         />
-        <button type="submit" className={css.searchButton}>
-          Search
-        </button>
+        <div className={css.buttonContainer}>
+          <button type="submit" className={css.searchButton}>
+            Search
+          </button>
+        </div>
       </form>
     </>
   );

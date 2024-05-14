@@ -1,23 +1,37 @@
 .navigationWrapper {
-  background-color: #333;
-  padding: 10px;
+  background-color: #ffffff;
+  /* padding: 10px; */
 }
 
 .navigationWrapper header {
   color: #fff;
+  margin-bottom: 20px;
 }
 
 .navigationWrapper nav {
   display: flex;
+  justify-content: center;
 }
 
 .navigationWrapper .navLink {
-  color: #fff;
-  margin-right: 10px;
+  color: #366478;
+  padding: 20px;
+
   text-decoration: none;
+  text-shadow: 1px 1px #558abb;
+  font-variant: small-caps;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
 }
+
+.navigationWrapper .navLink:hover,
+.navigationWrapper .navLink:focus {
+  color: #558abb;
+  text-shadow: 1px 1px #366478;
+  transform: scale(1.05);
+}
+
 .header {
-  padding: 20px 30px;
+  padding: 20px 30px 0px 30px;
   text-align: center;
-  box-shadow: 0px 4px 4px #d3d3d3;
+  border-bottom: thick double #558abb;
 }

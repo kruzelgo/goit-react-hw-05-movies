@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieReviews } from '../../Api';
 import css from './MovieDetails.module.css';
@@ -11,25 +11,35 @@ const MovieDetails = () => {
   const [movieData, setMovieData] = useState({});
   const [credits, setCredits] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const movieDetails = await getMovieDetails(movieId);
-        setMovieData(movieDetails);
+        startTransition(async () => {
+          const movieDetails = await getMovieDetails(movieId);
+          setMovieData(movieDetails);
 
-        const movieCredits = await getMovieCredits(movieId);
-        setCredits(movieCredits);
+          const movieCredits = await getMovieCredits(movieId);
+          setCredits(movieCredits);
 
-        const movieReviews = await getMovieReviews(movieId);
-        setReviews(movieReviews);
+          const movieReviews = await getMovieReviews(movieId);
+          setReviews(movieReviews);
+          setIsLoading(false);
+        });
       } catch (error) {
+        setError(error);
+        setIsLoading(false);
         console.error('Error fetching movie details:', error);
       }
     };
 
     fetchData();
   }, [movieId]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <main>

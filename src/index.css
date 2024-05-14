@@ -31,6 +31,10 @@ p {
   padding: 0;
 }
 
+h2 {
+  font-size: 0.7em;
+  font-variant: small-caps;
+}
 ul,
 ol {
   padding: 0;

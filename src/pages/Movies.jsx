@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { searchMovies } from '../../Api';
-import MoviesList from '../../MoviesList/MoviesList';
-import SearchForm from '../../SearchForm/SearchForm';
+import { searchMovies } from '../Api';
+import SearchForm from '../components/SearchForm/SearchForm';
+import MoviesList from '../components/MoviesList/MoviesList';
 
 const Movies = () => {
   const location = useLocation();
