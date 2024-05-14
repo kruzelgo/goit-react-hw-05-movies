@@ -1,6 +1,6 @@
 import React, { useState, useEffect, startTransition } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getMovieDetails, getMovieCredits, getMovieReviews } from '../../Api';
+import { getMovieDetails, getMovieCast, getMovieReviews } from '../../Api';
 import css from './MovieDetails.module.css';
 
 const defaultImg =
@@ -21,7 +21,7 @@ const MovieDetails = () => {
           const movieDetails = await getMovieDetails(movieId);
           setMovieData(movieDetails);
 
-          const movieCredits = await getMovieCredits(movieId);
+          const movieCredits = await getMovieCast(movieId);
           setCredits(movieCredits);
 
           const movieReviews = await getMovieReviews(movieId);

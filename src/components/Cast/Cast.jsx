@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieCredits } from '../../Api';
+import { getMovieCast } from '../../Api';
 import css from './Cast.module.css';
 
 const Cast = () => {
@@ -10,7 +10,7 @@ const Cast = () => {
   useEffect(() => {
     const fetchCredits = async () => {
       try {
-        const movieCredits = await getMovieCredits(movieId);
+        const movieCredits = await getMovieCast(movieId);
         setCast(movieCredits || []);
       } catch (error) {
         console.error('Error fetching movie credits:', error);

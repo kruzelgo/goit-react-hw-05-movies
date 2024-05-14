@@ -1,12 +1,14 @@
 import React, { lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import NavigationWrapper from './NavigationWrapper/NavigationWrapper';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
+const NavigationWrapper = lazy(() =>
+  import('./NavigationWrapper/NavigationWrapper')
+);
 
 export const App = () => {
   return (
