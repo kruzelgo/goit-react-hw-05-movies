@@ -3,7 +3,6 @@ import { LoadingIndicator } from '../LoadingIndicator';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { searchMoviesById } from '../../Api/Api';
 import MovieCard from '../MovieCard/MovieCard';
-// import loadingIndicator from '../SharedLayout/SharedLayout.module.css';
 import { Button, Container } from './MovieDetails.styled';
 
 const MovieDetails = () => {

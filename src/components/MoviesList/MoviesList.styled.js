@@ -1,36 +1,3 @@
-// .movieListSection {
-//   padding: 20px;
-//   background-color: #f8f9fa;
-//   border-radius: 8px;
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-// }
-
-// .movieListTitle {
-//   font-size: 24px;
-//   font-weight: bold;
-//   margin-bottom: 20px;
-//   text-align: center;
-//   color: #333;
-// }
-
-// .movieList {
-//   list-style-type: none;
-//   padding: 0;
-// }
-
-// .movieListItem {
-//   margin-bottom: 10px;
-// }
-
-// .movieListLink {
-//   text-decoration: none;
-//   color: #007bff;
-//   font-size: 18px;
-// }
-
-// .movieListLink:hover {
-//   text-decoration: underline;
-// }
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -46,10 +13,11 @@ export const SectionTitle = styled.h2`
   font-size: 30px;
   font-weight: 600;
   text-align: center;
+  font-variant: small-caps;
 `;
 
 export const List = styled.ul`
-  list-style: disc;
+  list-style: none;
   color: #0d57aa;
 `;
 
@@ -61,12 +29,13 @@ export const ListItem = styled.li`
 
 export const StyledLink = styled(Link)`
   font-size: 20px;
-  color: #0d57aa;
+  color: hsl(190, 83%, 30%);
   transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+  font-variant: small-caps;
 
   &:hover,
   &:focus {
-    color: #1c85ff;
-    border-bottom: 2px solid #1c85ff;
+    color: hsl(89, 82%, 46%);
+    border-bottom: 2px dotted hsl(89, 82%, 46%);
   }
 `;

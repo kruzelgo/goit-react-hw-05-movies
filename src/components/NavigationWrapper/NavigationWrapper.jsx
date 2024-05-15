@@ -3,7 +3,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { LoadingIndicator } from '../LoadingIndicator';
-// import css from './NavigationWrapper.module.css';
 import { StyledHeader, StyledNavLink } from './NavigationWrapper.styled';
 
 const NavigationWrapper = () => {

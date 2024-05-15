@@ -4,7 +4,6 @@ export const LoadingIndicator = () => {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#f0f0f0',
   };
 
   const spinnerStyle = {
@@ -23,4 +22,4 @@ export const LoadingIndicator = () => {
   );
 };
 
-export default LoadingIndicator;
+// export default LoadingIndicator;
