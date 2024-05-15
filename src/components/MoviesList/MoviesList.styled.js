@@ -23,12 +23,13 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   &:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 1px;
   }
 `;
 
 export const StyledLink = styled(Link)`
   font-size: 20px;
+
   color: hsl(190, 83%, 30%);
   transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
   font-variant: small-caps;
