@@ -1,4 +1,6 @@
-.searchForm {
+import styled from 'styled-components';
+
+export const Form = styled.form`
   margin-bottom: 20px;
   margin-top: 20px;
   display: flex;
@@ -6,18 +8,18 @@
   align-items: center;
   width: 100%;
   align-content: space-around;
-}
+`;
 
-.searchInput {
+export const Input = styled.input`
   padding: 10px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 20px;
   justify-content: center;
-}
+`;
 
-.searchButton {
+export const Button = styled.button`
   font-size: 1rem;
   padding: 9px;
   margin: 0;
@@ -42,22 +44,15 @@
     box-shadow calc(var(--dur) * 4) ease-out,
     transform calc(var(--dur) * 4) ease-out,
     background calc(var(--dur) * 4) steps(4, jump-end);
-}
 
-.searchButton:hover,
-.searchButton:focus {
-  box-shadow: 0 4px 8px hsla(190deg, 15%, 5%, 0.2);
-  transform: translateY(-4px);
-  background: hsl(89, 82%, 46%);
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-}
-
-.buttonContainer {
-  width: 50%;
-
-  display: flex;
-  align-items: center;
-}
+  &:hover,
+  &:focus {
+    box-shadow: 0 4px 8px hsla(190deg, 15%, 5%, 0.2);
+    transform: translateY(-4px);
+    background: hsl(89, 82%, 46%);
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+  }
+`;

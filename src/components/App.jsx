@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-
+import { Toaster } from 'sonner';
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
@@ -33,6 +33,7 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
+      <Toaster />
     </div>
   );
 };

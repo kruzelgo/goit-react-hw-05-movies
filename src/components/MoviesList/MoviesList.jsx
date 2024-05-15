@@ -1,29 +1,31 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import css from './MoviesList.module.css';
-import { Link } from 'react-router-dom';
+import {
+  List,
+  ListItem,
+  SectionTitle,
+  StyledLink,
+  StyledSection,
+} from '../MoviesList/MoviesList.styled';
 
-const MovieList = ({ trendingMovies }) => {
+const MoviesList = ({ trendingMovies }) => {
   return (
-    <section className={css.movieListSection}>
-      <h2 className={css.movieListTitle}>Trending today</h2>
-      <ul className={css.movieList}>
+    <StyledSection>
+      <SectionTitle>Trending today</SectionTitle>
+
+      <List>
         {trendingMovies.map(trendingMovie => (
-          <li key={trendingMovie.id} className={css.movieListItem}>
-            <Link
-              to={`/movies/${trendingMovie.id}`}
-              className={css.movieListLink}
-            >
+          <ListItem key={trendingMovie.id}>
+            <StyledLink to={`/movies/${trendingMovie.id}`}>
               {trendingMovie.title}
-            </Link>
-          </li>
+            </StyledLink>
+          </ListItem>
         ))}
-      </ul>
-    </section>
+      </List>
+    </StyledSection>
   );
 };
 
-MovieList.propTypes = {
+MoviesList.propTypes = {
   trendingMovies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -36,4 +38,4 @@ MovieList.propTypes = {
   ).isRequired,
 };
 
-export default MovieList;
+export default MoviesList;

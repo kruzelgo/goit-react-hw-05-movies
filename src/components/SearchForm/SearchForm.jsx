@@ -1,52 +1,30 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import css from './SearchForm.module.css';
-import {
-  NotificationContainer,
-  NotificationManager,
-} from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
+import { toast } from 'sonner';
+import { Button, Form, Input } from '../SearchForm/SearchForm.styled';
 
-const SearchForm = ({ onSubmit }) => {
-  const [query, setQuery] = useState('');
-
+const SearchMovies = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
+
+    const query = e.target.elements.query.value;
+
     if (!query) {
-      notifyError('Please enter something');
+      toast.error('Please enter something');
       return;
     }
-    onSubmit(query);
-    setQuery('');
-  };
 
-  const notifyError = message => {
-    NotificationManager.error(message);
+    onSubmit(query);
+    e.target.reset();
   };
 
   return (
-    <>
-      <NotificationContainer />
-      <form className={css.searchForm} onSubmit={handleSubmit}>
-        <input
-          placeholder="Search movies"
-          type="text"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          className={css.searchInput}
-        />
-        <div className={css.buttonContainer}>
-          <button type="submit" className={css.searchButton}>
-            Search
-          </button>
-        </div>
-      </form>
-    </>
+    <Form onSubmit={handleSubmit}>
+      <Input name="query" type="text" placeholder="Search movies" />{' '}
+      <Button type="submit">Search</Button>{' '}
+    </Form>
   );
 };
 
-SearchForm.propTypes = {
-  onSubmit: PropTypes.func,
-};
+SearchMovies.propTypes = { onSubmit: PropTypes.func.isRequired };
 
-export default SearchForm;
+export default SearchMovies;

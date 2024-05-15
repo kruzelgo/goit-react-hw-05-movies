@@ -1,56 +1,67 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCast } from '../../Api/Api';
-import css from './Cast.module.css';
+import {
+  CastHeader,
+  CastImage,
+  CastInfo,
+  CastList,
+  CastListItem,
+  CastName,
+  NoCastText,
+  Wrapper,
+} from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    const fetchCredits = async () => {
+    const fetchCast = async () => {
       try {
-        const movieCredits = await getMovieCast(movieId);
-        setCast(movieCredits || []);
+        const { cast } = await getMovieCast(movieId);
+        setCast(cast);
       } catch (error) {
-        console.error('Error fetching movie credits:', error);
+        console.log(error);
       }
     };
 
-    fetchCredits();
+    fetchCast();
   }, [movieId]);
 
   return (
-    <div className={css.castWrapper}>
-      <h3 className={css.castHeader}>Cast</h3>
-      {cast.length > 0 ? (
-        <ul className={css.castList}>
+    <Wrapper>
+      <CastHeader>Cast</CastHeader>
+
+      {cast.length ? (
+        <CastList>
           {cast.map(actor => (
-            <li className={css.castListItem} key={actor.id}>
+            <CastListItem className="cast-card" key={actor.id}>
               {actor.profile_path ? (
-                <img
-                  className={css.castImage}
+                <CastImage
                   src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
                   alt={`${actor.name} profile`}
                 />
               ) : (
-                <img
-                  className={css.castImage}
-                  src={`https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png`}
+                <CastImage
+                  src={`https://via.placeholder.com/200x300?text=No+Image`}
                   alt={`${actor.name} profile`}
                 />
               )}
-              <div className={css.castInfo}>
-                <h3 className={css.castName}>{actor.name}</h3>
+
+              <CastInfo>
+                <CastName>{actor.name}</CastName>
                 <p>Character: {actor.character}</p>
-              </div>
-            </li>
+              </CastInfo>
+            </CastListItem>
           ))}
-        </ul>
+        </CastList>
       ) : (
-        <p className={css.noCastText}>No cast information available.</p>
+        <NoCastText>
+          We don't have any information about the cast yet.
+        </NoCastText>
       )}
-    </div>
+    </Wrapper>
   );
 };
 

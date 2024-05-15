@@ -1,34 +1,26 @@
-import React from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
-// import { Suspense } from 'react';
-// import LoadingIndicator from '../LoadingIndicator';
-import PropTypes from 'prop-types';
-import css from './NavigationWrapper.module.css';
+// SharedLayout.jsx
+
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import { LoadingIndicator } from '../LoadingIndicator';
+// import css from './NavigationWrapper.module.css';
+import { StyledHeader, StyledNavLink } from './NavigationWrapper.styled';
 
 const NavigationWrapper = () => {
   return (
-    <div className={css.navigationWrapper}>
-      <header className={css.header}>
-        {' '}
+    <>
+      <StyledHeader>
         <nav>
-          <NavLink to="/" className={css.navLink}>
-            Home
-          </NavLink>
-          <NavLink to="/movies" className={css.navLink}>
-            Movies
-          </NavLink>
+          <StyledNavLink to="/">Home</StyledNavLink>
+          <StyledNavLink to="/movies">Movies</StyledNavLink>
         </nav>
-      </header>
+      </StyledHeader>
 
-      {/* <Suspense fallback={<LoadingIndicator />}> */}
-      <Outlet />
-      {/* </Suspense> */}
-    </div>
+      <Suspense fallback={<LoadingIndicator />}>
+        <Outlet />
+      </Suspense>
+    </>
   );
-};
-
-NavigationWrapper.propTypes = {
-  className: PropTypes.string,
 };
 
 export default NavigationWrapper;

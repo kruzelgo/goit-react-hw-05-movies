@@ -1,8 +1,15 @@
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReviews } from '../../Api/Api';
-import css from './Reviews.module.css';
+import {
+  Author,
+  NoReviewsText,
+  Review,
+  ReviewHeader,
+  ReviewList,
+  ReviewListItem,
+  Wrapper,
+} from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -11,10 +18,10 @@ const Reviews = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const movieReviews = await getMovieReviews(movieId);
-        setReviews(movieReviews);
+        const { results } = await getMovieReviews(movieId);
+        setReviews(results);
       } catch (error) {
-        console.error('Error fetching movie reviews:', error);
+        console.log(error);
       }
     };
 
@@ -22,34 +29,25 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div className={css.reviewWrapper}>
-      <h3 className={css.reviewHeader}>Reviews</h3>
-      {reviews.length ? (
-        <ul className={css.reviewList}>
-          {reviews.map(review => (
-            <li className={css.reviewListItem} key={review.id}>
-              <p className={css.review}>{review.content}</p>
-              {review.author && (
-                <p className={css.author}>Author: {review.author}</p>
-              )}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className={css.noReviews}>This movie hasn't been reviewed yet.</p>
-      )}
-    </div>
-  );
-};
+    <Wrapper>
+      <ReviewHeader>Reviews</ReviewHeader>
 
-Reviews.propTypes = {
-  reviews: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+      {reviews.length ? (
+        <ReviewList className="reviews-container">
+          {reviews.map(review => (
+            <ReviewListItem className="review-card" key={review.id}>
+              <Author>Author: {review.author}</Author>{' '}
+              <Review>{review.content}</Review>{' '}
+            </ReviewListItem>
+          ))}
+        </ReviewList>
+      ) : (
+        <NoReviewsText>
+          We don't have any reviews for this movie yet.{' '}
+        </NoReviewsText>
+      )}
+    </Wrapper>
+  );
 };
 
 export default Reviews;
